@@ -26,23 +26,26 @@ from math import inf
 def merge_sort(A, p, r):
     if p+1 < r:
         # divide
-        q = (p+r)/2
+        q = (p+r)//2
 
         # conquer
-        left = merge_sort(A, p, q)
-        right = merge_sort(A, q+1, r)
+        merge_sort(A, p, q)
+        merge_sort(A, q+1, r)
 
         # combine
-        sortedA = merge(A, p, q, r)
-    return sortedA
+        merge(A, p, q, r)
 
 
 def merge(A, p, q, r):
-    n1 = p
-    n2 = r-q
-    left = A[p:q:] + [inf]
-    right = A[q+1:r:] + [inf]
+    # n1 = q - p
+    # n2 = r - q
+
+    # temp arrays
+    left = A[p:q+1] + [inf]
+    right = A[q+1:r] + [inf]
+
     i, j = 0, 0
+
     for k in range(p, r):
         if left[i] <= right[j]:
             A[k] = left[i]
@@ -50,10 +53,9 @@ def merge(A, p, q, r):
         else:
             A[k] = right[j]
             j += 1
-    return A
 
 
 if __name__ == "__main__":
-    dummy = [2, 4, 5, 3]
-    sorted_dummy = merge_sort(dummy, 1, len(dummy))
-    print(sorted_dummy)
+    dummy = [2, 5, 4, 6, 1, 3]
+    merge_sort(dummy, 0, len(dummy))
+    print(dummy)
