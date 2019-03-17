@@ -27,13 +27,14 @@ def merge_sort(A, p, r):
     if p+1 < r:
         # divide
         q = (p+r)//2
-
+#        print(A[p:q], A[q:r])
         # conquer
         merge_sort(A, p, q)
-        merge_sort(A, q+1, r)
+        merge_sort(A, q, r)
 
         # combine
         merge(A, p, q, r)
+#        print(A[p:r])
 
 
 def merge(A, p, q, r):
@@ -41,8 +42,8 @@ def merge(A, p, q, r):
     # n2 = r - q
 
     # temp arrays
-    left = A[p:q+1] + [inf]
-    right = A[q+1:r] + [inf]
+    left = A[p:q] + [inf]
+    right = A[q:r] + [inf]
 
     i, j = 0, 0
 
@@ -56,6 +57,8 @@ def merge(A, p, q, r):
 
 
 if __name__ == "__main__":
-    dummy = [2, 5, 4, 6, 1, 3]
+    dummy = [64, 82, 53, 27, 41, 98]
+    # kudos to my flatmate for the dummy list
+    print(dummy)
     merge_sort(dummy, 0, len(dummy))
     print(dummy)
