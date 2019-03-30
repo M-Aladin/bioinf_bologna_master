@@ -1,5 +1,5 @@
 def binary_search(A, v):
-    # initialize indexes
+    # initialize indices
     p = 0
     r = len(A)
 
