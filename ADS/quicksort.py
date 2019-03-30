@@ -19,11 +19,11 @@ PARTITION (A, p, r)
 
 
 def partition(A, p, r):
-    print(A[p:r])
-    print(r)
+    # print(A[p:r])
+    # print(r)
     x = A[r]
     i = p - 1
-    for j in range(p, r-1):
+    for j in range(p, r):  # j assumes values from p to r-1
         if A[j] <= x:
             i = i+1
             A[i], A[j] = A[j], A[i]
@@ -39,7 +39,8 @@ def quicksort(A, p, r):
 
 
 if __name__ == "__main__":
-    dummy = [4, 5, 3, 7, 1]
+    import random
+    dummy = random.sample(range(1,20), 10)
     print(dummy)
-    quicksort(dummy, 0, len(dummy))
+    quicksort(dummy, 0, len(dummy)-1)
     print(dummy)
