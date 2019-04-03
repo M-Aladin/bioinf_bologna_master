@@ -7,6 +7,7 @@ I should use the sys module much more
 """
 
 import sys
+from math import inf
 
 
 def get_fasta(sid, fasta):
@@ -46,10 +47,22 @@ def get_list_fasta(lid, fasta):
             print(line)
 
 
+def get_lowest(filename):
+    d = {}
+    maxv = inf
+    f = open(filename)
+    for line in f:
+        v = line.split()
+        sid = v[0]
+        eva = float(v[10])
+        d[v[sid]] = min(d.get(sid, maxv), eva)
+    return d
+
+
 if __name__ == "__main__":
     # sid = sys.argv[1]
     fid = sys.argv[1]  # seq ids stored in a file passed as input
-    fasta=sys.argv[2]
+    fasta = sys.argv[2]
     # get_fasta(sid, fasta)
     lid = open(fid).read().split('\n')  # open the file containing ids and make a list out of it
     get_list_fasta(lid, fasta)
