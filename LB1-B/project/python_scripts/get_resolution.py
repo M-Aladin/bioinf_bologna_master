@@ -16,12 +16,10 @@ def cluster_rep(clust_ids):
     Create a dictionary and populate it like so:
     for each cluster, the key will be an increasing integer, the value will be a list such that [id, resolution]
     :param clust_ids: a file with all the clustered ids
-    :return:
     """
     representatives = dict()
     f = open(clust_ids)
     i = 0
-    # print("I can't take anymore of this shit")
     for cluster in f:  # cluster aka line
         representatives[i] = [' ', inf]  # we populate the dictionary like so
         ids = cluster.rstrip().split()
@@ -32,7 +30,7 @@ def cluster_rep(clust_ids):
                 representatives[i] = [id_chain, pdb_res]
         i += 1
     for rep in representatives.keys():
-        print(representatives[rep][0])  # I expect to get a file containing all the representative structures
+        print(representatives[rep][0])  # print in output all the representative structures
         # in id_chain format
     f.close()
 
