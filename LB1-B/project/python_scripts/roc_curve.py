@@ -4,6 +4,7 @@ from sklearn.metrics import roc_curve, auc
 
 
 def get_data(dataf):
+    """Extract data and the respective labels from a file"""
     with open(dataf) as f:
         label = []
         e_val = []
@@ -14,6 +15,7 @@ def get_data(dataf):
 
 
 def roc2(fpr, tpr, roc_auc):
+    """Print a ROC curve given lists of coordinates (fpr, tpr)"""
     plt.figure()
     plt.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)
     plt.plot([0, 1], [0, 1], color='navy', lw=1, linestyle='--')
@@ -26,31 +28,16 @@ def roc2(fpr, tpr, roc_auc):
     plt.show()
 
 
-# def roc1(fpr, tpr, roc_auc):
-#     fig, ax = plt.subplots(1, 1, figsize=(10, 5))
-#     ax.plot(fpr, tpr)
-#     # ~ ax.plot(x,x, "--")
-#     ax.set_xlim([0, 1])
-#     ax.set_ylim([0, 1])
-#     ax.set_title("ROC Curve", fontsize=14)
-#     ax.set_ylabel('TPR', fontsize=12)
-#     ax.set_xlabel('FPR', fontsize=12)
-#     ax.grid()
-#     ax.legend(["AUC=%.5f" % roc_auc])
-#     plt.show()
-
-
 if __name__ == '__main__':
     ''' usage: python roc_curve.py labeled_data.txt
-     labeled data comprises both pos and neg data, each with its nice label '''
+     labeled data comprises both pos and neg data, each with its label'''
     labeled_data = sys.argv[1]
     # The input data is split into labels and e-values
     label, e_val = get_data(labeled_data)
-    # THE REAL BEEF --> this magic function takes in input the labels and the "predictions" (aka e-val)
+    # function below takes in input the labels and the "predictions" (aka e-val)
     # and returns a list of FPRs and TPRs
     fpr, tpr, thresholds = roc_curve(label, e_val, pos_label=1)
-    # Another magical function that computes the area under the curve
-    roc_auc = auc(fpr, tpr)
+    roc_auc = auc(fpr, tpr)  # computation of area under ROC curve
     print(roc_auc, len(thresholds))
     roc2(fpr, tpr, roc_auc)
     # roc1(fpr, tpr, roc_auc)
