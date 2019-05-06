@@ -40,4 +40,3 @@ if __name__ == '__main__':
     roc_auc = auc(fpr, tpr)  # computation of area under ROC curve
     print(roc_auc, len(thresholds))
     roc2(fpr, tpr, roc_auc)
-    # roc1(fpr, tpr, roc_auc)

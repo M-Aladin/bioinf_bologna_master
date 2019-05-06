@@ -10,6 +10,7 @@ def mat_print(mat):
 
 
 def confusion_mat(filename, threshold):
+    """File format must be, for each line, <e-value> <class label>"""
     f = open(filename)
     mat = [[0 for i in range(2)] for i in range(2)]
     for line in f:
