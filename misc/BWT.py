@@ -1,3 +1,8 @@
+"""notes:
+- still doesn't work for words with spaces in them
+- someday I will try to implement the reverse operation, which is much harder"""
+
+
 def alphabet(s):
     """count which characters appear in a string, and in how many copies. Store counters in a dictionary"""
     alph = dict()
@@ -68,5 +73,5 @@ def bwt_decode(s):
 
 
 if __name__ == "__main__":
-    dummy = "attp$aa"
+    dummy = "ipssm$pissii"
     print(bwt_decode(dummy))
